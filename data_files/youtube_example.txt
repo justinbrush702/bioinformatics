@@ -1,0 +1,4 @@
+check0	1	1
+check1	3	4
+check2	4	5
+check3	5	7
