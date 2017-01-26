@@ -128,7 +128,7 @@ with open(sys.argv[1], "r") as f:
             weightList.append(int(entry[1]))
             valueList.append(int(entry[2]))
         except:
-            print 'Your data file is formatted incorrectly. Check the test.tsv file for correct formatting.'
+            print errorAlert, 'Your data file is formatted incorrectly. Check the test.tsv file for correct formatting.'
             sys.exit()
 
         print formatEntry(entry[0], entry[1], entry[2])
