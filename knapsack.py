@@ -4,6 +4,48 @@ import sys
 # This script can read in data from a file with entries separated by new lines and tabs.
 # Each entry should have its own line; each data point in each entry should be separated by a tab.
 
+errorAlert = '*****'
+
+# Error trapping for input parameters
+
+# If there are not enough parameters
+if len(sys.argv) < 3:
+    print errorAlert, 'To run this script, you must pass the following two arguments in order:'
+    print '\tThe .tsv file containing the data'
+    print '\tThe size of the knapsack.'
+    print errorAlert, 'For example:'
+    print '\tpython knapsack.py data.tsv 10'
+    print errorAlert, 'Check the README file for more information.'
+    sys.exit()
+
+# Check to see if the file can be located
+try:
+    f = open(sys.argv[1])
+except IOError as e:
+    print errorAlert, 'Your file was not found. Make sure you properly enter the path to the file.'
+    # print errorAlert, 'Here was the error given by the system:'
+    # print "\tI/O error({0}): {1}".format(e.errno, e.strerror)
+    sys.exit()
+else:
+    f.close()
+
+# If the data file is not a .tsv file
+if sys.argv[1][-4:] != '.tsv':
+    print errorAlert, 'Make sure the data file you pass in is a .tsv file.'
+    sys.exit()
+
+knapsackSize = sys.argv[2]
+
+try:
+    knapsackSize = int(knapsackSize)
+except ValueError:
+    print errorAlert, 'The value passed in for the size of the knapsack was invalid. Please try again.'
+    sys.exit()
+
+if knapsackSize < 0:
+    print errorAlert, 'The size of the knapsack cannot be negative. Please try again.'
+    sys.exit()
+
 
 # Formats an entry / item from the list of items to be considered for the knapsack
 def formatEntry (name, weight, value):
@@ -42,7 +84,7 @@ def solveKnapsack (nameList, weightList, valueList, maxWeight):
             else:
                 matrix[x][y] = matrix[x-1][y]
 
-    printMatrix(matrix, 'Solving knapsack problem via dynamic programming...')
+    printMatrix(matrix, 'Creating the dynamic table...')
 
     # Trace back through the matrix to find which items were selected
     knapsack = []
@@ -54,7 +96,6 @@ def solveKnapsack (nameList, weightList, valueList, maxWeight):
         if matrix[x][y] != matrix[x-1][y]:
             totalWeight += weightList[x]
             item = formatEntry(nameList[x], weightList[x], valueList[x])
-            # item = nameList[x] + ' weight: ' + str(weightList[x]) + ' value: ' + str(valueList[x])
             knapsack.insert(0, item)
             y = y - weightList[x]
         x = x - 1
@@ -63,8 +104,8 @@ def solveKnapsack (nameList, weightList, valueList, maxWeight):
     for item in knapsack:
         print item
     print ''
-    print "Total weight: ", totalWeight
-    print "Total value: ", matrix[horizontal-1][vertical-1]
+    print "Total weight of final knapsack: ", totalWeight
+    print "Total value of final knapsack: ", matrix[horizontal-1][vertical-1]
 
 
 # Initialize lists with the first item in each list as 0 / essentially null (makes it easier for finding the solution)
@@ -81,17 +122,20 @@ with open(sys.argv[1], "r") as f:
     for line in lines:
         entry = line.split('\t')
 
-        # print line
-        # print entry
-        print formatEntry(entry[0], entry[1], entry[2])
-
         nameList.append(entry[0])
-        weightList.append(int(entry[1]))
-        valueList.append(int(entry[2]))
+
+        try:
+            weightList.append(int(entry[1]))
+            valueList.append(int(entry[2]))
+        except:
+            print 'Your data file is formatted incorrectly. Check the test.tsv file for correct formatting.'
+            sys.exit()
+
+        print formatEntry(entry[0], entry[1], entry[2])
 print ''
-print "Max weight allowed in the knapsack: ", sys.argv[2]
+print "Max weight allowed in the knapsack: ", knapsackSize
 print ''
 
-solveKnapsack(nameList, weightList, valueList, int(sys.argv[2]))
+solveKnapsack(nameList, weightList, valueList, knapsackSize)
 
 print ''
