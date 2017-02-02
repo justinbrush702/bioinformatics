@@ -1,6 +1,4 @@
-Justin Brush
-
-Assignment 1 was to implement the knapsack problem using dynamic programming. My python program can solve the knapsack problem by reading in a file with data structured as such...
+Assignment 1 is to implement the knapsack problem using dynamic programming. My python script can solve the knapsack problem by reading in a file with data structured as such...
 
 name1 weight1 value1<br/>
 name2 weight2 value2<br/>
