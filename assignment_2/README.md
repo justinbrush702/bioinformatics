@@ -29,32 +29,32 @@ alignment itself.
 
 For example, let us say the input file has the following data:
 
-AAGGT
-CCCCCCAAGGTCCCCCCC
-AAAGCTAT
-ACACAGGTAA
-CCAAGTCC
+AAGGT<br/>
+CCCCCCAAGGTCCCCCCC<br/>
+AAAGCTAT<br/>
+ACACAGGTAA<br/>
+CCAAGTCC<br/>
 
 The output should look like this:
 
-best alignment is from [1,7] to [5,11]
-score is 5
-AAGGT
-AAGGT
+best alignment is from [1,7] to [5,11]<br/>
+score is 5<br/>
+AAGGT<br/>
+AAGGT<br/>
 
-best alignment is from [1,2] to [5,6]
-score is 3
-AAGGT
-AAGCT
+best alignment is from [1,2] to [5,6]<br/>
+score is 3<br/>
+AAGGT<br/>
+AAGCT<br/>
 
-best alignment is from [1,4] to [5,8]
-score is 3
-AAGGT
-CAGGT
+best alignment is from [1,4] to [5,8]<br/>
+score is 3<br/>
+AAGGT<br/>
+CAGGT<br/>
 
-best alignment is from [1,3] to [5,6]
-score is 2
-AAGGT
-AAG-T
+best alignment is from [1,3] to [5,6]<br/>
+score is 2<br/>
+AAGGT<br/>
+AAG-T<br/>
 
 The output is written to a file located at the base of this assignment's directory.
