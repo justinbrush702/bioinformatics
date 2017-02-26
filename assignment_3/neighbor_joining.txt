@@ -1,0 +1,62 @@
+Use the Neighbor Joining technique to create a *rooted* tree,
+showing the hypothesized lineage of the West Nile data.
+
+For each iteration, if there is a tie in the biased distance
+score, choose the pair with the lowest-lettered cluster.  So, if
+you have a choice of merging A-and-B or C-and-D, merge A and B.
+Each new cluster counts as coming after all previously-made
+clusters.  So if you have a choice of merging AB-and-E or
+C-and-D, merge C and D.
+
+The input file will consist of several lines, in which each piece
+of data is tab-separated.  The first line will contain the names
+of the taxa.  Each subsequent line will contain distances.  So,
+for the Neighbor Joining example we did in class, the data file
+will look like this:
+
+-----
+Species 1	Species 2	Species 3	Species 4	Species 5	Species 6
+0
+5	0
+4	7	0
+7	10	7	0
+6	9	6	5	0
+8	11	8	9	8	0
+-----
+
+The output will be text-based (ASCII).  Each node will be
+assigned a name, so that leaves are single letters and internal
+nodes are combinations of those letters.  The output will contain
+a single line for each node.
+
+  * If the node is a leaf, the name of its taxon should be
+    printed.
+
+  * If the node is an internal one, the names of its
+    children and their distances should be printed.
+
+The first node printed should be the root, followed by its
+children.  (This should be done in a recursive, prefix
+manner--see me if you don't understand what this means.)  So
+the output for the above distance data will look like this:
+
+Node Root	connected to F 2.50, FCAB 2.50
+Node F		(Species 6)
+Node FCAB	connected to CAB 1.00, DE 1.00
+Node CAB	connected to C 2.00, AB 1.00
+Node C		(Species 3)
+Node AB		connected to A 1.00, B 4.00
+Node A		(Species 1)
+Node B		(Species 2)
+Node DE		connected to D 3.00, E 2.00
+Node D		(Species 4)
+Node E		(Species 5)
+
+Please make your program able to handle different data files,
+rather than being hardcoded to only accept a data file of a
+single name.
+
+To root the tree, one of the original taxa will have to be
+designated as an "outgroup."  (We will discuss this concept in
+class on Tuesday.)  Assume that the last taxon is the
+outgroup--in the given example, that's Species 6.
