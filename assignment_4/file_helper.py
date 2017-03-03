@@ -30,7 +30,6 @@ def parseData (data_file):
         printHelper.printWithColor(['SUCCESS', 'SUCCESS!', True])
         print ''
 
-
     # Read in the data file.
     with open(data_file, "r") as f:
         lines = f.readlines()
@@ -54,7 +53,8 @@ def parseData (data_file):
         'sequences': sequences
     }
 
-# Function that takes in one or more files specified
+
+# # Function that takes in one or more files specified (will this function be necessary?)
 # def readFiles (sysArgs):
 #     # Takes in one input, the name of a data file
 #     if len(sys.argv) > 1:

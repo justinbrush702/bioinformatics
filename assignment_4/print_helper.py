@@ -1,9 +1,8 @@
 import color_brush
+import tree_helper
 
-# Helper methods for printing useful and organized information
-
-# Change color of text in the terminal with these
 colorBrush = color_brush
+treeHelper = tree_helper
 
 # Sandwich a print function with a blank line before and after printing
 def sandwichPrint(printFunction, printValues):
@@ -42,5 +41,35 @@ def printError (message):
     print 'To run the script, execute this command from the base of the Assignment 4 directory:'
     print ''
     print '\tpython main.py <name of data file [optional]>'
+    print ''
+
     colorBrush.resetColor()
+    print ''
+
+# Function to print the results of small parsimony
+def printResults (sequences, structure, smallP):
+    # All the sequences present in the list of example sequences
+    print ''
+    print 'Input sequence:'
+    print ''
+    print sequences
+    print ''
+
+    # For the example, we have A connected to C, and G connected to T, and their parents connected to each other
+    # R --> root
+    # . --> internal node
+    # [number] --> the index at which the specified sequence is located in the sequence list
+    print ''
+    print 'Input tree string structure:'
+    print ''
+    print structure
+    print ''
+
+    # Output the final tree and score
+    print ''
+    print 'Final Tree:'
+    print ''
+    treeHelper.printTree(smallP.get('root'))
+    print ''
+    print 'Score: ' + str(smallP.get('score'))
     print ''

@@ -22,6 +22,7 @@ def nameAncestors (node, name):
         nameAncestors(node.children[1], node.table[name].get('pathR'))
 
 
+# Function that initiates small parsimony on a tree
 def smallParsimony (root):
     # Calculate all of the tables (bottom --> up)
     calculateTables(root)
@@ -35,7 +36,6 @@ def smallParsimony (root):
             lowestKeyRoot = key
             lowestValueRoot = root.table[key].get('value')
     # print 'lowest key in root: ' + lowestKeyRoot
-
 
 
     # Call the naming function

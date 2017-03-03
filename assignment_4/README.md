@@ -32,8 +32,6 @@ Large Parsimony file
 
 TODO:
 
-Figure out exactly how the files should be handled
+Figure out exactly how the data files should be handled
 smallParsimony must be able to handle sequences longer than 1
-printResults should be a function in printHelper
-Separate and sort concerns between printHelper and errorHandler
 All of large parsimony
