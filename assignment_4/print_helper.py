@@ -47,29 +47,27 @@ def printError (message):
     print ''
 
 # Function to print the results of small parsimony
-def printResults (sequences, structure, smallP):
+def printResults (sequences, structure, beforeP, afterP):
     # All the sequences present in the list of example sequences
-    print ''
-    print 'Input sequence:'
-    print ''
-    print sequences
+    sandwichPrint(printWithColor, ['INFO', 'Input sequences:', True])
+    for seqIndex in range(len(sequences)):
+        print sequences[seqIndex]
     print ''
 
-    # For the example, we have A connected to C, and G connected to T, and their parents connected to each other
     # R --> root
     # . --> internal node
-    # [number] --> the index at which the specified sequence is located in the sequence list
-    print ''
-    print 'Input tree string structure:'
-    print ''
+    # [number] --> index at which the specified sequence is located in the sequence list
+    sandwichPrint(printWithColor, ['INFO', 'Input tree string structure:', True])
     print structure
     print ''
 
-    # Output the final tree and score
+    # Structure of tree with leaf nodes in place
+    sandwichPrint(printWithColor, ['INFO', 'Tree structure with leaf nodes in place:', True])
+    treeHelper.printTree(beforeP)
+
+    # Output final tree and score
+    sandwichPrint(printWithColor, ['INFO', 'Final Tree:', True])
+    treeHelper.printTree(afterP.get('root'))
     print ''
-    print 'Final Tree:'
-    print ''
-    treeHelper.printTree(smallP.get('root'))
-    print ''
-    print 'Score: ' + str(smallP.get('score'))
+    print 'Score: ' + str(afterP.get('score'))
     print ''

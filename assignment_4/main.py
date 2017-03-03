@@ -1,4 +1,3 @@
-# import sys
 import os
 import file_helper
 import print_helper
@@ -20,25 +19,21 @@ def runSmallP (data_file):
     # Read in sequence list and structure
     treeInfo = fileHelper.parseData(data_file)
     sequences = treeInfo.get('sequences')
-    structure = str(treeInfo.get('structure'))
-
-    # smallP = ''
-    # printHelper.printResults(sequences, structure, smallP)
+    structure = treeInfo.get('structure')
 
     # Decode tree
     root = treeHelper.decode(structure, sequences)
-    treeHelper.printTree(root)
 
     # Run Sankoff's algorithm on tree
-    smallP = smallParsimony(root)
+    smallP = smallParsimony(root, len(sequences[0]))
 
-    # Print the results
-    printHelper.printResults(sequences, structure, smallP)
+    # Print results
+    printHelper.printResults(sequences, structure, root, smallP)
 
 
 # Call runSmallP on specified data file
 # (Hardcoded example data file for testing)
-runSmallP('data_files/example.dat')
+runSmallP('data_files/seq_5_len_100.dat')
 
 
 # Clear out the .pyc files that are created from compiling and importing python files into each other.

@@ -17,21 +17,17 @@ Further on —> what are other trees I can make from this tree?
 
 This solution only works with with DNA sequences (so, no amino acid sequences)
 
+Is the parsimony for the whole tree the sum of the parsimonies for each individual tree?
+
 ===============================
 
 Files
 
-Tree string decoder / Tree string encoder xxxxxx
-File that holds base and penalty information xxxxxxx
-Small Parsimony file xxxxxxx
-
-Test data file??
-Large Parsimony file
+Large Parsimony file??
 
 ===============================
 
 TODO:
 
-Figure out exactly how the data files should be handled
-smallParsimony must be able to handle sequences longer than 1
+Figure out exactly how the data files should be handled;
 All of large parsimony

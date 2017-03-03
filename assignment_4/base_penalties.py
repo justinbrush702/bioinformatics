@@ -1,10 +1,4 @@
 bases = ['A', 'C', 'G', 'T']
-matrixLookup = {
-    'A': 0,
-    'C': 1,
-    'G': 2,
-    'T': 3
-}
 
 # Hardcoded penalties
 # A   C   G   T

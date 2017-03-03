@@ -8,7 +8,7 @@ lookupPenalty = base_penalties.lookupPenalty
 # Node class
 class Node:
 
-    def __init__(self, name, parent, depth, isLeaf):
+    def __init__(self, name, parent, depth):
         # Name is the base
         self.name = name
 
@@ -24,21 +24,20 @@ class Node:
         # This table will hold all of the data necessary to calculate ancestors
         self.table = {}
 
-        # If this node is a leaf, initialize its table
-        self.isLeaf = isLeaf
-        if isLeaf:
-            # Set up intial information for each base
-            for base in bases:
 
-                # At first, give all of the bases a value of infinity
-                self.table[base] = {
-                    'value': float('inf')
-                }
-
-                # Then, replace the base that represents this node with a value of 0
-                self.table[self.name] = {
-                    'value': 0
-                }
+    # Function to intialize table for node
+    # Only gets called when node is a leaf
+    def initializeTable (self):
+        # Set up intial information for each base
+        for base in bases:
+            # At first, give all of the bases a value of infinity
+            self.table[base] = {
+                'value': float('inf')
+            }
+            # Then, replace the base that represents this node with a value of 0
+            self.table[self.name] = {
+                'value': 0
+            }
 
     # Function to calculate the table of an ancestral node
     def calculateTable (self):
