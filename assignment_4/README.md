@@ -1,6 +1,6 @@
 This assignment requires me to run both small or large parsimony on sequences and tree structures. The script takes one or two arguments:
-  A sequences file
-  A structure file (this file is optional)
+  A sequences file,
+  A structure file (this file is optional).
 
 If both sequence and structure files are specified, the script runs small parsimony on the data. If only a sequence file is specified, then large parsimony is ran on the data. The small parsimony solution uses Sankoff's algorithm; the large parsimony solution uses Branch and Bound.
 
@@ -19,15 +19,3 @@ If you run the script this way, be sure to back track when specifying the paths 
 This assignment is only designed to work with with DNA bases and sequences (so, no amino acid sequences). The penalties for switching from one base to another are hardcoded and are located in base_penalties.py.
 
 All errors are trapped except for improperly formatted data files. I am assuming the data files are formatted correctly.
-
-===============================
-
-TODO:
-
-All of large parsimony
-
-===
-
-Questions:
-
-Is the parsimony for the whole tree the sum of the parsimonies for each single-sequence, "individual" tree?

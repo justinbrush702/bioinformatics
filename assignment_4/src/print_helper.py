@@ -88,6 +88,29 @@ def smallParsimonyResults (results):
     print ''
 
 
+# Helper to pull and align numbers to the right
+def pullRight(number):
+    # Arbitrary spacing value
+    spacer = 15
+    number = str(number)
+    if len(number) < spacer:
+        return ' '*(spacer - len(number)) + number
+
+
 # Function to print results of large parsimony
 def largeParsimonyResults (treeInfo):
-    print 'Test printing --> large parsimony results'
+    # Shows how many trees could have possibly been searched
+    forest = len(treeInfo.get('sequences')) - 3
+    possibilities = 1
+    for i in range(forest + 1):
+        possibilities *= (1 + (i + 1)*2)
+
+    # Pull out the counts of the number of trees actually searched
+    endCount = treeInfo.get('endCount')
+    intermediateCount = treeInfo.get('intermediateCount')
+
+    print 'Number of possible trees to search:\t' + pullRight(possibilities)
+    print 'Number of intermediate trees searched:\t' + pullRight(intermediateCount)
+    print 'Number of end trees searched:\t\t' + pullRight(endCount)
+    print 'Number of trees searched in total:\t' + pullRight(endCount + intermediateCount)
+    print ''

@@ -87,8 +87,6 @@ def combineTrees (mainNode, addNode):
 
 # Function that initiates small parsimony on a tree
 def smallParsimony (treeInfo):
-
-    # Tree info object --> what shall we do with it???
     sequences = treeInfo.get('sequences')
     structure = treeInfo.get('structure')
 

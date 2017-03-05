@@ -6,6 +6,7 @@ printHelper = print_helper
 
 # Script to read in data files
 
+
 # Function to read in file; returns the lines in the data file
 def verifyFile (data_file):
     printHelper.printWithColor(['INFO', 'Verify data file: ' + data_file, True])
@@ -40,7 +41,6 @@ def verifyFile (data_file):
 
 # Function to parse the data from input files
 def parseData (sysArgs):
-
     # Verify there is at least one argument (there can be one or two)
     if len(sysArgs) < 2:
         throwError('No data files specified! Specify a sequences data file along with an optional structure data file.', True)
@@ -56,6 +56,10 @@ def parseData (sysArgs):
         # If the first character is an 'R', that means this file specifies structure (starting at the root, 'R')
         throwError('The first file passed in appears to contain the structure. The first file must hold the sequences.', True)
 
+    # Verify there are at least 3 sequences
+    if len(sequenceFile) < 3:
+        throwError('There must be at least 3 sequences in the sequences data file to run parsimony.')
+
     # Build the list of sequences in tree
     sequences = []
     for line in sequenceFile:
@@ -64,9 +68,12 @@ def parseData (sysArgs):
     # Tack the sequences onto the tree info dictionary
     treeInfo['sequences'] = sequences
 
-
     # If there is a tree structure file...
     if len(sysArgs) > 2:
+        # There is only one line in this file
+        # R --> root
+        # .[id] --> internal node
+        # [number] --> index at which the specified sequence is located in the sequence list
         structureFile = verifyFile(sysArgs[2])
 
         # Simple check to determine the structureFile contains the structure, not the sequences
@@ -80,14 +87,8 @@ def parseData (sysArgs):
         if str(len(sequences)) in structureFile[0]:
             throwError('There are not enough sequences in the sequence file for the structure in the structure file.')
 
-        # There is only one line in this file
-        # R --> root
-        # . --> internal node
-        # [number] --> index at which the specified sequence is located in the sequence list
-        structure = structureFile[0].replace('/', '\n')
-
         # Tack the structure onto the tree info dictionary
-        treeInfo['structure'] = structure
+        treeInfo['structure'] = structureFile[0]
 
 
     # Return the treeInfo dictionary
