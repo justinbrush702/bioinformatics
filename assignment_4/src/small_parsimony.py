@@ -1,5 +1,5 @@
-import copy
 import sys
+import copy
 import tree_helper
 
 treeHelper = tree_helper
@@ -86,7 +86,18 @@ def combineTrees (mainNode, addNode):
 
 
 # Function that initiates small parsimony on a tree
-def smallParsimony (root, length):
+def smallParsimony (treeInfo):
+
+    # Tree info object --> what shall we do with it???
+    sequences = treeInfo.get('sequences')
+    structure = treeInfo.get('structure')
+
+    # Decode tree
+    root = treeHelper.decode(sequences, structure)
+
+    # Distill the length of the sequences in the tree
+    length = len(sequences[0])
+
     # Break up the tree into individual trees based on the length of the sequences at the leaves
     treeList = buildSingleTrees(root, length)
 
@@ -107,8 +118,11 @@ def smallParsimony (root, length):
         combineTrees(finalTree, finishedTreeList[index].get('root'))
         finalScore += finishedTreeList[index].get('score')
 
-    # Return an information object containing the final tree and score
+    # Return an information dictionary containing info generated during small parsimony
     return {
-        'root': finalTree,
+        'sequences': sequences,
+        'structure': structure,
+        'beforeP': root,
+        'afterP': finalTree,
         'score': finalScore
     }

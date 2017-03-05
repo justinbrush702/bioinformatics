@@ -8,7 +8,7 @@ bases = base_penalties.bases
 # Script holds functions to decode tree strings
 
 # Function to decode tree structure from tree string
-def decode (structure, sequences):
+def decode (sequences, structure):
     # Nodes in the tree
     nodes = structure.split('\n')
 

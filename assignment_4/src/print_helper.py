@@ -4,11 +4,13 @@ import tree_helper
 colorBrush = color_brush
 treeHelper = tree_helper
 
+
 # Sandwich a print function with a blank line before and after printing
 def sandwichPrint(printFunction, printValues):
     print ''
     printFunction(printValues)
     print ''
+
 
 # Print a line with a given message and color
 def printWithColor (values):
@@ -22,41 +24,54 @@ def printWithColor (values):
         print message,
     colorBrush.resetColor()
 
+
 # Error alert
 errorAlert = '*****'
 
 # Gives structure to an error message
-def printError (message):
+def printError (message, showReminder=False):
     colorBrush.setColor('FAIL')
     print errorAlert, 'ERROR', errorAlert
     print ''
     print message
     print ''
-    print errorAlert*4
-    print ''
 
-    # Add a reminder for properly running the script with file inputs
-    printWithColor(['BOLD', 'Reminder:', True])
-    colorBrush.setColor('FAIL')
-    print 'To run the script, execute this command from the base of the Assignment 4 directory:'
-    print ''
-    print '\tpython main.py <name of data file [optional]>'
-    print ''
+    if showReminder:
+        # Add a reminder for properly running the script with file inputs
+        print errorAlert*4
+        print ''
+        printWithColor(['BOLD', 'Reminder:', True])
+        colorBrush.setColor('FAIL')
+        print 'To run the script, execute this command from the base of the Assignment 4 directory:'
+        print ''
+        print '\tpython src/main.py <path of sequences file> <path of structure file [optional]>'
+        print ''
+        print 'Or from the src folder, run:'
+        print ''
+        print '\tpyton main.py <path of sequences file> <path of structure file [optional]>'
+        print ''
+        print '(If you run the script from the src folder, be sure to back track when specifying the data files)'
+        print '(E.g. ../data_files/sequences/file.dat)'
 
     colorBrush.resetColor()
     print ''
 
-# Function to print the results of small parsimony
-def printResults (sequences, structure, beforeP, afterP):
+
+# Function to print results of small parsimony
+def smallParsimonyResults (results):
+    sequences = results.get('sequences')
+    structure = results.get('structure')
+    beforeP = results.get('beforeP')
+    afterP = results.get('afterP')
+    score = results.get('score')
+
     # All the sequences present in the list of example sequences
     sandwichPrint(printWithColor, ['INFO', 'Input sequences:', True])
     for seqIndex in range(len(sequences)):
         print sequences[seqIndex]
     print ''
 
-    # R --> root
-    # . --> internal node
-    # [number] --> index at which the specified sequence is located in the sequence list
+    # Structure of the tree specified by the file (no sequence data)
     sandwichPrint(printWithColor, ['INFO', 'Input tree string structure:', True])
     print structure
     print ''
@@ -67,7 +82,12 @@ def printResults (sequences, structure, beforeP, afterP):
 
     # Output final tree and score
     sandwichPrint(printWithColor, ['INFO', 'Final Tree:', True])
-    treeHelper.printTree(afterP.get('root'))
+    treeHelper.printTree(afterP)
     print ''
-    print 'Score: ' + str(afterP.get('score'))
+    print 'Score: ' + str(score)
     print ''
+
+
+# Function to print results of large parsimony
+def largeParsimonyResults (treeInfo):
+    print 'Test printing --> large parsimony results'

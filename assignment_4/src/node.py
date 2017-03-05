@@ -4,7 +4,6 @@ bases = base_penalties.bases
 penalties = base_penalties.penalties
 lookupPenalty = base_penalties.lookupPenalty
 
-
 # Node class
 class Node:
 
