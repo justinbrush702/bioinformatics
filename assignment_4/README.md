@@ -19,3 +19,8 @@ If you run the script this way, be sure to back track when specifying the paths 
 This assignment is only designed to work with with DNA bases and sequences (so, no amino acid sequences). The penalties for switching from one base to another are hardcoded and are located in base_penalties.py.
 
 All errors are trapped except for improperly formatted data files. I am assuming the data files are formatted correctly.
+
+TODO:
+
+Remove the dot progress print statements.
+Replace with a progress update every x amount of minutes, say every 15 or 30 minutes.
