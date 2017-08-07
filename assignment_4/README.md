@@ -1,3 +1,21 @@
+### Run the demo!
+
+You can run the demo of this project in 2 ways:
+
+1. Clone the repo, navigate to this directory, and run:
+
+```sh
+source demo.sh
+```
+
+2. If you have Docker installed on your machine, run:
+
+```sh
+docker run justinbrush702/phylogenetic-tree-demo
+```
+
+============
+
 This assignment requires me to run both small or large parsimony on sequences and tree structures. The script takes one or two arguments:
   A sequences file,
   A structure file (this file is optional).
